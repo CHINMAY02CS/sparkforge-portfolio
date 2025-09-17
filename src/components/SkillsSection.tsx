@@ -1,6 +1,6 @@
-import { useEffect, useRef, useState } from 'react';
-import { Progress } from '@/components/ui/progress';
-import { Card, CardContent } from '@/components/ui/card';
+import { useEffect, useRef, useState } from "react";
+import { Progress } from "@/components/ui/progress";
+import { Card, CardContent } from "@/components/ui/card";
 
 const SkillsSection = () => {
   const sectionRef = useRef<HTMLElement>(null);
@@ -31,29 +31,35 @@ const SkillsSection = () => {
     { name: "JavaScript (ES6+)", level: 95, color: "from-cyan to-purple" },
     { name: "HTML5 & CSS3", level: 98, color: "from-blue to-purple" },
     { name: "Tailwind CSS", level: 92, color: "from-purple to-cyan" },
-    { name: "Vue.js", level: 80, color: "from-cyan to-blue" }
+    { name: "React Native", level: 80, color: "from-purple to-blue" },
   ];
 
   const backendSkills = [
     { name: "Node.js", level: 88, color: "from-purple to-blue" },
     { name: "Express.js", level: 85, color: "from-blue to-cyan" },
-    { name: "Python/Django", level: 75, color: "from-cyan to-purple" },
-    { name: "PostgreSQL", level: 82, color: "from-purple to-blue" },
     { name: "MongoDB", level: 80, color: "from-blue to-cyan" },
-    { name: "REST APIs", level: 90, color: "from-cyan to-purple" }
+    { name: "SQL", level: 78, color: "from-purple to-cyan" },
   ];
 
   const tools = [
     { name: "Git & GitHub", level: 95, color: "from-purple to-blue" },
-    { name: "Docker", level: 75, color: "from-blue to-cyan" },
-    { name: "AWS/Vercel", level: 80, color: "from-cyan to-purple" },
-    { name: "Figma", level: 85, color: "from-purple to-cyan" },
-    { name: "Jest/Testing", level: 85, color: "from-blue to-purple" },
-    { name: "Webpack/Vite", level: 88, color: "from-cyan to-blue" }
+    { name: "Cypress / Jest", level: 85, color: "from-blue to-cyan" },
+    { name: "Storybook", level: 80, color: "from-cyan to-purple" },
   ];
 
-  const SkillCard = ({ title, skills, delay = 0 }: { title: string; skills: typeof frontendSkills; delay?: number }) => (
-    <Card className="glass-card hover:glow-purple transition-all duration-500 animate-fadeInUp" style={{ animationDelay: `${delay}s` }}>
+  const SkillCard = ({
+    title,
+    skills,
+    delay = 0,
+  }: {
+    title: string;
+    skills: typeof frontendSkills;
+    delay?: number;
+  }) => (
+    <Card
+      className="glass-card hover:glow-purple transition-all duration-500 animate-fadeInUp"
+      style={{ animationDelay: `${delay}s` }}
+    >
       <CardContent className="p-6">
         <h3 className="text-xl font-semibold gradient-text mb-6 text-center">
           {title}
@@ -62,19 +68,23 @@ const SkillsSection = () => {
           {skills.map((skill, index) => (
             <div key={skill.name} className="space-y-2">
               <div className="flex justify-between items-center">
-                <span className="text-sm font-medium text-foreground">{skill.name}</span>
-                <span className="text-sm text-muted-foreground">{skill.level}%</span>
+                <span className="text-sm font-medium text-foreground">
+                  {skill.name}
+                </span>
+                <span className="text-sm text-muted-foreground">
+                  {skill.level}%
+                </span>
               </div>
               <div className="relative">
-                <Progress 
-                  value={isVisible ? skill.level : 0} 
+                <Progress
+                  value={isVisible ? skill.level : 0}
                   className="h-2 bg-muted"
                 />
-                <div 
+                <div
                   className={`absolute top-0 left-0 h-2 rounded-full bg-gradient-to-r ${skill.color} transition-all duration-1000 ease-out`}
-                  style={{ 
-                    width: isVisible ? `${skill.level}%` : '0%',
-                    transitionDelay: `${delay + index * 0.1}s`
+                  style={{
+                    width: isVisible ? `${skill.level}%` : "0%",
+                    transitionDelay: `${delay + index * 0.1}s`,
                   }}
                 />
               </div>
@@ -86,7 +96,11 @@ const SkillsSection = () => {
   );
 
   return (
-    <section id="skills" ref={sectionRef} className="py-20 bg-secondary/20 relative overflow-hidden">
+    <section
+      id="skills"
+      ref={sectionRef}
+      className="py-20 bg-secondary/20 relative overflow-hidden"
+    >
       {/* Background decoration */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-0 left-0 w-96 h-96 bg-purple rounded-full blur-3xl" />
@@ -104,8 +118,16 @@ const SkillsSection = () => {
         </div>
 
         <div className="grid lg:grid-cols-3 gap-8">
-          <SkillCard title="Frontend Development" skills={frontendSkills} delay={0} />
-          <SkillCard title="Backend Development" skills={backendSkills} delay={0.2} />
+          <SkillCard
+            title="Frontend Development"
+            skills={frontendSkills}
+            delay={0}
+          />
+          <SkillCard
+            title="Backend Development"
+            skills={backendSkills}
+            delay={0.2}
+          />
           <SkillCard title="Tools & Technologies" skills={tools} delay={0.4} />
         </div>
 
@@ -116,9 +138,13 @@ const SkillsSection = () => {
           </h3>
           <div className="flex flex-wrap justify-center gap-3">
             {[
-              "GraphQL", "Redux", "Zustand", "Socket.io", "Prisma", "Supabase", 
-              "Firebase", "Stripe", "Three.js", "Framer Motion", "Cypress", "Playwright",
-              "Microservices", "CI/CD", "Agile/Scrum", "WebRTC"
+              "Redux",
+              "Zustand",
+              "Vite",
+              "C++",
+              "Material-UI",
+              "Shadcn/UI",
+              "Zod",
             ].map((tech, index) => (
               <span
                 key={tech}

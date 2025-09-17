@@ -44,9 +44,22 @@ All colors MUST be HSL.
     --blue: 217 91% 60%;
     --blue-light: 217 91% 70%;
     --cyan: 189 85% 65%;
-    --gradient-primary: linear-gradient(135deg, hsl(263 70% 50%), hsl(217 91% 60%));
-    --gradient-secondary: linear-gradient(135deg, hsl(217 91% 60%), hsl(189 85% 65%));
-    --gradient-hero: linear-gradient(135deg, hsl(263 70% 50%) 0%, hsl(217 91% 60%) 50%, hsl(189 85% 65%) 100%);
+    --gradient-primary: linear-gradient(
+      135deg,
+      hsl(263 70% 50%),
+      hsl(217 91% 60%)
+    );
+    --gradient-secondary: linear-gradient(
+      135deg,
+      hsl(217 91% 60%),
+      hsl(189 85% 65%)
+    );
+    --gradient-hero: linear-gradient(
+      135deg,
+      hsl(263 70% 50%) 0%,
+      hsl(217 91% 60%) 50%,
+      hsl(189 85% 65%) 100%
+    );
     --glow-purple: 0 0 40px hsl(263 70% 50% / 0.4);
     --glow-blue: 0 0 40px hsl(217 91% 60% / 0.4);
 
@@ -121,6 +134,9 @@ All colors MUST be HSL.
 }
 
 @layer components {
+  .gradient-text-header {
+    @apply bg-gradient-to-r from-purple-400 to-blue-500 bg-clip-text text-transparent;
+  }
   .gradient-text {
     @apply bg-gradient-to-r from-purple to-blue bg-clip-text text-transparent;
   }
@@ -154,36 +170,46 @@ All colors MUST be HSL.
   .text-purple {
     color: hsl(var(--purple));
   }
-  
+
   .text-blue {
     color: hsl(var(--blue));
   }
-  
+
   .text-cyan {
     color: hsl(var(--cyan));
   }
-  
+
   .bg-purple {
     background-color: hsl(var(--purple));
   }
-  
+
   .bg-blue {
     background-color: hsl(var(--blue));
   }
-  
+
   .bg-cyan {
     background-color: hsl(var(--cyan));
   }
 }
 
 @keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-20px); }
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
 }
 
 @keyframes pulse-glow {
-  0% { box-shadow: 0 0 20px hsl(var(--purple) / 0.4); }
-  100% { box-shadow: 0 0 40px hsl(var(--purple) / 0.8), 0 0 60px hsl(var(--blue) / 0.4); }
+  0% {
+    box-shadow: 0 0 20px hsl(var(--purple) / 0.4);
+  }
+  100% {
+    box-shadow: 0 0 40px hsl(var(--purple) / 0.8),
+      0 0 60px hsl(var(--blue) / 0.4);
+  }
 }
 
 @keyframes fadeInUp {

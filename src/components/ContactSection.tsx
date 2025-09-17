@@ -1,18 +1,26 @@
-import { useState, useEffect, useRef } from 'react';
-import { Card, CardContent } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
-import { Label } from '@/components/ui/label';
-import { Mail, Phone, MapPin, Github, Linkedin, Twitter, Send } from 'lucide-react';
-import { useToast } from '@/hooks/use-toast';
+import { useState, useEffect, useRef } from "react";
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Label } from "@/components/ui/label";
+import {
+  Mail,
+  Phone,
+  MapPin,
+  Github,
+  Linkedin,
+  Twitter,
+  Send,
+} from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
 
 const ContactSection = () => {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: ''
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
@@ -23,24 +31,26 @@ const ContactSection = () => {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            entry.target.classList.add('animate-fadeInUp');
+            entry.target.classList.add("animate-fadeInUp");
           }
         });
       },
       { threshold: 0.1 }
     );
 
-    const items = sectionRef.current?.querySelectorAll('.contact-item');
+    const items = sectionRef.current?.querySelectorAll(".contact-item");
     items?.forEach((item) => observer.observe(item));
 
     return () => observer.disconnect();
   }, []);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
   };
 
@@ -50,18 +60,19 @@ const ContactSection = () => {
 
     // Simulate form submission
     try {
-      await new Promise(resolve => setTimeout(resolve, 1500));
-      
+      await new Promise((resolve) => setTimeout(resolve, 1500));
+
       toast({
         title: "Message sent successfully!",
-        description: "Thank you for reaching out. I'll get back to you within 24 hours.",
+        description:
+          "Thank you for reaching out. I'll get back to you within 24 hours.",
       });
 
       setFormData({
-        name: '',
-        email: '',
-        subject: '',
-        message: ''
+        name: "",
+        email: "",
+        subject: "",
+        message: "",
       });
     } catch (error) {
       toast({
@@ -78,46 +89,44 @@ const ContactSection = () => {
     {
       icon: Mail,
       label: "Email",
-      value: "alex.smith@example.com",
-      href: "mailto:alex.smith@example.com"
+      value: "dpsvn.chin06162@gmail.com",
+      href: "mailto:dpsvn.chin06162@gmail.com",
     },
     {
       icon: Phone,
       label: "Phone",
-      value: "+1 (555) 123-4567",
-      href: "tel:+15551234567"
+      value: "+91 8287435835",
+      href: "tel:+918287435835",
     },
     {
       icon: MapPin,
       label: "Location",
-      value: "San Francisco, CA",
-      href: "#"
-    }
+      value: "New Delhi, India",
+      href: "#",
+    },
   ];
 
   const socialLinks = [
     {
       icon: Github,
       label: "GitHub",
-      href: "https://github.com/alexsmith",
-      color: "hover:text-foreground"
+      href: "https://github.com/CHINMAY02CS",
+      color: "hover:text-foreground",
     },
     {
       icon: Linkedin,
       label: "LinkedIn",
-      href: "https://linkedin.com/in/alexsmith",
-      color: "hover:text-blue"
+      href: "https://linkedin.com/in/chinmaycs",
+      color: "hover:text-blue",
     },
-    {
-      icon: Twitter,
-      label: "Twitter",
-      href: "https://twitter.com/alexsmith_dev",
-      color: "hover:text-cyan"
-    }
   ];
 
   return (
-    <section id="contact" ref={sectionRef} className="py-20 bg-background relative overflow-hidden">
+    <section
+      id="contact"
+      ref={sectionRef}
+      className="py-20 bg-background relative overflow-hidden"
+    >
       {/* Background decoration */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple rounded-full blur-3xl" />
@@ -130,7 +139,8 @@ const ContactSection = () => {
             Get In Touch
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Have a project in mind? Let's discuss how we can work together to bring your ideas to life.
+            Have a project in mind? Let's discuss how we can work together to
+            bring your ideas to life.
           </p>
         </div>
 
@@ -142,24 +152,25 @@ const ContactSection = () => {
                 Let's Start a Conversation
               </h3>
               <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
-                I'm always excited to discuss new opportunities, interesting projects, 
-                or just chat about technology and development. Whether you're looking 
-                for a freelance developer, want to collaborate on a project, or have 
-                questions about web development, I'd love to hear from you.
+                I'm always excited to discuss new opportunities, interesting
+                projects, or just chat about technology and development. Whether
+                you're looking for a freelance developer, want to collaborate on
+                a project, or have questions about web development, I'd love to
+                hear from you.
               </p>
             </div>
 
             {/* Contact Details */}
             <div className="space-y-4">
               {contactInfo.map((item, index) => (
-                <div 
+                <div
                   key={index}
                   className="contact-item opacity-0 group"
                   style={{ animationDelay: `${0.2 + index * 0.1}s` }}
                 >
                   <Card className="glass-card hover:glow-purple transition-all duration-300">
                     <CardContent className="p-4">
-                      <a 
+                      <a
                         href={item.href}
                         className="flex items-center gap-4 text-foreground hover:text-purple transition-colors duration-300"
                       >
@@ -170,9 +181,7 @@ const ContactSection = () => {
                           <div className="font-medium text-sm text-muted-foreground">
                             {item.label}
                           </div>
-                          <div className="font-semibold">
-                            {item.value}
-                          </div>
+                          <div className="font-semibold">{item.value}</div>
                         </div>
                       </a>
                     </CardContent>
@@ -182,7 +191,10 @@ const ContactSection = () => {
             </div>
 
             {/* Social Links */}
-            <div className="contact-item opacity-0" style={{ animationDelay: '0.6s' }}>
+            <div
+              className="contact-item opacity-0"
+              style={{ animationDelay: "0.6s" }}
+            >
               <h4 className="text-lg font-semibold text-foreground mb-4">
                 Follow Me
               </h4>
@@ -204,13 +216,16 @@ const ContactSection = () => {
           </div>
 
           {/* Contact Form */}
-          <div className="contact-item opacity-0" style={{ animationDelay: '0.3s' }}>
+          <div
+            className="contact-item opacity-0"
+            style={{ animationDelay: "0.3s" }}
+          >
             <Card className="glass-card">
               <CardContent className="p-8">
                 <h3 className="text-2xl font-bold gradient-text mb-6">
                   Send a Message
                 </h3>
-                
+
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid md:grid-cols-2 gap-4">
                     <div className="space-y-2">
@@ -299,9 +314,12 @@ const ContactSection = () => {
         </div>
 
         {/* Footer */}
-        <div className="contact-item opacity-0 text-center mt-16 pt-8 border-t border-purple/20" style={{ animationDelay: '0.8s' }}>
+        <div
+          className="contact-item opacity-0 text-center mt-16 pt-8 border-t border-purple/20"
+          style={{ animationDelay: "0.8s" }}
+        >
           <p className="text-muted-foreground">
-            © 2024 Alex Smith. Built with React, TypeScript, and lots of ☕
+            © 2025 Chinmay Singh. Built with React, TypeScript, and lots of ☕
           </p>
         </div>
       </div>
